@@ -10,7 +10,7 @@ import { Args,
          Mutation } from '@nestjs/graphql'
 
 import { Document } from './models/document.model'
-//import { DocumentService } from //create doc service
+import { DocumentService } from './document.service'
 
 import { User } from '../user/models/user.model';
 
@@ -29,22 +29,23 @@ export class SaveDocumentInput {
 
 @Resolver(of => Document)
 export class DocumentResolver {
-    //documentservice
+    constructor(private documentService: DocumentService) {}
 
   @Query(returns => Document)
     getDocument(@Args('id', {type: () => Int}) id: number) {
-      return // create documentservice this.documentService.findOneByID(id)
+      return this.documentService.getDocument(id);
     }
+    //confirm where parent needs to be defined
   @ResolveField('documents', returns => [Document])
     documents(@Parent() author: User) {
       const { id } = author
-      return // this.documentService.findAll({authorID: id})
+      return this.documentService.documents(id);
     }
 
 @Mutation(returns => Document)
   saveDocument(
     @Args('saveDocumentData') saveDocumentData: SaveDocumentInput
     ) {
-    //    return this.documentService.saveDocument
+      return this.documentService.saveDocument(saveDocumentData)
     }
 }

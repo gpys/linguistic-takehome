@@ -13,10 +13,10 @@ export class Document {
     title: string;
 
     @Field()
-    body: string;
+    text: string;
 
-    @Field(type => User)
-    author: User 
+    @Field(type => Int)
+    authorID: number //userID
 
     @Field()
     createdAt: Date;

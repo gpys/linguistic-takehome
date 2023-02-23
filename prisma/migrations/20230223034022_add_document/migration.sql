@@ -1,0 +1,10 @@
+-- CreateTable
+CREATE TABLE "Document" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "title" TEXT NOT NULL,
+    "text" TEXT NOT NULL,
+    "authorID" INTEGER NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME,
+    CONSTRAINT "Document_authorID_fkey" FOREIGN KEY ("authorID") REFERENCES "users" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);

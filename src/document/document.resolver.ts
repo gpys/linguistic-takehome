@@ -33,19 +33,24 @@ export class DocumentResolver {
 
   @Query(returns => Document)
     getDocument(@Args('id', {type: () => Int}) id: number) {
-      return this.documentService.getDocument(id);
+      return this.documentService.getOneDocument(id);
     }
     //confirm where parent needs to be defined
-  @ResolveField('documents', returns => [Document])
-    documents(@Parent() author: User) {
-      const { id } = author
-      return this.documentService.documents(id);
+//   @ResolveField('documents', returns => [Document])
+//     documents(@Parent() author: User) {
+//       const { id } = author
+//       return this.documentService.getAllDocuments(id);
+//     }
+
+  @Query(returns => [Document])
+    documents(@Args('id', {type: () => Int}) id: number) {
+        return this.documentService.getAllDocuments(id);
     }
 
 @Mutation(returns => Document)
   saveDocument(
     @Args('saveDocumentData') saveDocumentData: SaveDocumentInput
     ) {
-      return this.documentService.saveDocument(saveDocumentData)
+      return this.documentService.createDocument(saveDocumentData)
     }
 }

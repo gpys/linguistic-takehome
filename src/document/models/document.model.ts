@@ -1,9 +1,5 @@
 import { Field, ObjectType, Int } from '@nestjs/graphql'
 
-// import type { User } from '@prisma/client'
-
-//import { User } from '../../user/models/user.model'
-
 @ObjectType()
 export class Document { //implements DocumentModel
     @Field(type => Int)
@@ -15,7 +11,6 @@ export class Document { //implements DocumentModel
     @Field()
     text: string;
 
-    //set up foreign key relatonship
     @Field(type => Int)
     authorID: number //userID
 
@@ -25,5 +20,5 @@ export class Document { //implements DocumentModel
 
     @Field({nullable: true})
     updatedAt?: Date;
-    //set to updated
+    
 }

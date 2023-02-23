@@ -1,10 +1,9 @@
 import { Injectable } from '@nestjs/common';
 
-import { PrismaService } from '../prisma'
+import { PrismaService } from '../prisma';
 
 import type { SaveDocumentInput } from './document.resolver';
-
-import type { Document } from './models/document.model'
+import type { Document } from './models/document.model';
 
 @Injectable()
 export class DocumentService {
@@ -24,7 +23,6 @@ export class DocumentService {
   }
 
 
-  //want this method in userservice class with parent info
   getAllDocuments(authorID: number): Promise<Document[]> {
 
     return this.prismaService.document.findMany({
@@ -34,7 +32,7 @@ export class DocumentService {
     });
   }
 
-  async getOneDocument(id: number): Promise<Document> {
+  getOneDocument(id: number): Promise<Document> {
 
     return this.prismaService.document.findUniqueOrThrow({
         where: {

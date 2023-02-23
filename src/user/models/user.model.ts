@@ -15,7 +15,7 @@ export class User implements UserModel {
   @Field()
   email: string;
 
-  //added here. return array of documents associated with user
+  //return array of documents associated with user
   @Field(type => [Document], {nullable: 'items'})
   documents: Document[];
 }

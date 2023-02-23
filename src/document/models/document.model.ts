@@ -1,7 +1,7 @@
 import { Field, ObjectType, Int } from '@nestjs/graphql'
 
 @ObjectType()
-export class Document { //implements DocumentModel
+export class Document { 
     @Field(type => Int)
     id: number;
 
